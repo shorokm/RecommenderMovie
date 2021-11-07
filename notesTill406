@@ -1,0 +1,100 @@
+CODE FOR SUMMARY FIELD:
+
+test=> CREATE TABLE movies2 ( url text, title text, ReleaseDate text, Distributor text, Starring text, Summary text, Director text, Genre text, Rating text, Runtime text, Userscore text, Metascore text, scoreCounts text); 
+CREATE TABLE
+test=> \copy movies2 FROM '/home/pi/RSL/moviesFromMetacritic.csv' delimiter ';' csv header;
+COPY 5229
+test=> SELECT * FROM movies2 where url='pirates-of-the-caribbean-the-curse-of-the-black-pearl';
+
+[1]+  Stopped                 psql test
+pi@raspberrypi:~/RSL $ psql test
+psql (11.13 (Raspbian 11.13-0+deb10u1))
+Type "help" for help.
+
+test=> ALTER TABLE movies2 ADD lexemesSummary tsvector;
+ALTER TABLE
+test=> UPDATE movies2 SET lexemesSummary = to_tsvector(Summary);
+UPDATE 5229
+test=> SELECT url FROM movies2 WHERE lexemesSummary @@ to_tsquery('pirate');
+                          url                          
+-------------------------------------------------------
+ bukowski-born-into-this
+ captain-phillips
+ lucky-number-slevin
+ pan
+ the-pirates!-band-of-misfits
+ pirates-of-the-caribbean-the-curse-of-the-black-pearl
+ pirates-of-the-caribbean-at-worlds-end
+ the-pirates-who-dont-do-anything-a-veggietales-movie
+ pirates-of-the-caribbean-dead-men-tell-no-tales
+ the-princess-bride
+ stardust
+(11 rows)
+
+test=> ALTER TABLE movies2 ADD rank float4;
+ALTER TABLE
+test=> UPDATE movies2 SET rank = ts_rank(lexemesSummary,plainto_tsquery((SELECT Summary FROM movies2 WHERE url='pan')));
+UPDATE 5229
+test=> CREATE TABLE recommendationsBasedOnSummaryField AS SELECT url, rank FROM movies2 WHERE rank < 0.99 ORDER BY rank DESC LIMIT 50;
+SELECT 50
+test=> \copy (SELECT * FROM recommendationsBasedOnSummaryField) to '/home/pi/RSL/top50recommendations.csv' WITH csv;
+COPY 50
+
+CODE FOR TITLE FIELD:
+
+test=> ALTER TABLE movies2 ADD lexemesTitle tsvector;
+test=> UPDATE movies2 SET lexemesTitle = to_tsvector(Title);
+UPDATE 5229
+test=> SELECT url From movies2 WHERE lexemesTitle @@ to_tsquery('pirate');
+                          url                          
+-------------------------------------------------------
+ the-pirates-who-dont-do-anything-a-veggietales-movie
+ the-pirates!-band-of-misfits
+ pirates-of-the-caribbean-the-curse-of-the-black-pearl
+ pirates-of-the-caribbean-dead-mans-chest
+ pirates-of-the-caribbean-at-worlds-end
+ pirates-of-the-caribbean-dead-men-tell-no-tales
+(6 rows)
+
+test=> ALTER TABLE movies2 ADD rank1 float4;
+ALTER TABLE
+test=> UPDATE movies2 SET rank1 = ts_rank(lexemesTitle,plainto_tsquery((SELECT Title FROM movies2 WHERE url='pan')));
+UPDATE 5229
+test=> CREATE TABLE recommendationsBasedOnTitleField AS SELECT url, rank1 FROM movies2 WHERE rank1 < 0.99 ORDER BY rank1 DESC LIMIT 50;
+SELECT 50
+test=> \copy (SELECT * FROM recommendationsBasedOnTitleField) to '/home/pi/RSL/top50recommendation2.csv' WITH csv;
+COPY 50
+
+CODE FOR STARRING FIELD:
+
+test=> ALTER TABLE movies2 ADD lexemesStarring tsvector;
+ALTER TABLE
+test=> UPDATE movies2 SET lexemesStarring = to_tsvector(Starring);
+UPDATE 5229
+test=> SELECT url FROM movies2 WHERE lexemesStarring @@ to_tsquery('Zac');
+                  url                  
+---------------------------------------
+ 17-again
+ neighbors
+ that-awkward-moment
+ baywatch
+ neighbors-2-sorority-rising
+ charlie-st-cloud
+ high-school-musical-3-senior-year
+ liberal-arts
+ dr-seuss-the-lorax
+ the-lucky-one
+ mike-and-dave-need-wedding-dates-2016
+ parkland
+(12 rows)
+
+test=> ALTER TABLE movies2 ADD rank2 float4;
+ALTER TABLE
+test=> UPDATE movies2 SET rank2 = ts_rank(lexemesStarring,plainto_tsquery((SELECT Starring FROM movies2 WHERE url='baywatch')));
+UPDATE 5229
+test=> CREATE TABLE recommendationsBasedOnStarringField AS SELECT url, rank2 FROM movies2 WHERE rank2 < 0.99 ORDER BY rank2 DESC LIMIT 50;
+SELECT 50
+test=> \copy (SELECT * FROM recommendationsBasedOnStarringField) to '/home/pi/RSL/top50recommendations3.csv' WITH csv;
+COPY 50 
+
+

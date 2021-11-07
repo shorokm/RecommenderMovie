@@ -1,0 +1,54 @@
+python python_movie.py
+             movieName  Metascore_w       Author         AuthorHref          ...           InteractionsYesCount InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+0  birth-of-the-dragon            8   DotTheEyes   /user/DotTheEyes          ...                            2.0                    4.0                  2.0                    2.0
+1           beach-rats            2  GreatMartin  /user/GreatMartin          ...                            0.0                    1.0                  0.0                    1.0
+2  birth-of-the-dragon            8       sbolon       /user/sbolon          ...                            1.0                    2.0                  1.0                    1.0
+3           beach-rats            6      TVJerry      /user/TVJerry          ...                            0.0                    0.0                  0.0                    0.0
+4            good-time            6      TVJerry      /user/TVJerry          ...                            2.0                    2.0                  2.0                    0.0
+
+[5 rows x 10 columns]
+             movieName  Metascore_w       Author         AuthorHref          ...           InteractionsYesCount InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+0  birth-of-the-dragon            8   DotTheEyes   /user/DotTheEyes          ...                            2.0                    4.0                  2.0                    2.0
+1           beach-rats            2  GreatMartin  /user/GreatMartin          ...                            0.0                    1.0                  0.0                    1.0
+2  birth-of-the-dragon            8       sbolon       /user/sbolon          ...                            1.0                    2.0                  1.0                    1.0
+
+[3 rows x 10 columns]
+beach-rats
+    movieName  Metascore_w       Author         AuthorHref          Date Summary  InteractionsYesCount  InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+1  beach-rats            2  GreatMartin  /user/GreatMartin  Sep 22, 2017      []                   0.0                     1.0                  0.0                    1.0
+    movieName  Metascore_w   Author     AuthorHref          ...           InteractionsYesCount InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+3  beach-rats            6  TVJerry  /user/TVJerry          ...                            0.0                    0.0                  0.0                    0.0
+
+[1 rows x 10 columns]
+    movieName  Metascore_w     Author       AuthorHref          ...           InteractionsYesCount InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+7  beach-rats            6  whostosay  /user/whostosay          ...                            0.0                    0.0                  0.0                    0.0
+
+[1 rows x 10 columns]
+pi@raspberrypi:~/RSL $ python python_movie.py
+             movieName  Metascore_w       Author         AuthorHref          ...           InteractionsYesCount InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+0  birth-of-the-dragon            8   DotTheEyes   /user/DotTheEyes          ...                            2.0                    4.0                  2.0                    2.0
+1           beach-rats            2  GreatMartin  /user/GreatMartin          ...                            0.0                    1.0                  0.0                    1.0
+2  birth-of-the-dragon            8       sbolon       /user/sbolon          ...                            1.0                    2.0                  1.0                    1.0
+3           beach-rats            6      TVJerry      /user/TVJerry          ...                            0.0                    0.0                  0.0                    0.0
+4            good-time            6      TVJerry      /user/TVJerry          ...                            2.0                    2.0                  2.0                    0.0
+
+[5 rows x 10 columns]
+             movieName  Metascore_w       Author         AuthorHref          ...           InteractionsYesCount InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+0  birth-of-the-dragon            8   DotTheEyes   /user/DotTheEyes          ...                            2.0                    4.0                  2.0                    2.0
+1           beach-rats            2  GreatMartin  /user/GreatMartin          ...                            0.0                    1.0                  0.0                    1.0
+2  birth-of-the-dragon            8       sbolon       /user/sbolon          ...                            1.0                    2.0                  1.0                    1.0
+
+[3 rows x 10 columns]
+beach-rats
+    movieName  Metascore_w       Author         AuthorHref          Date Summary  InteractionsYesCount  InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+1  beach-rats            2  GreatMartin  /user/GreatMartin  Sep 22, 2017      []                   0.0                     1.0                  0.0                    1.0
+    movieName  Metascore_w   Author     AuthorHref          Date                                            Summary  InteractionsYesCount  InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+3  beach-rats            6  TVJerry  /user/TVJerry  Sep 18, 2017  [ "An aimless young man (Harris Dickinson) han...                   0.0                     0.0                  0.0                    0.0
+    movieName  Metascore_w     Author       AuthorHref          Date                                            Summary  InteractionsYesCount  InteractionsTotalCount  InteractionsThumbUp  InteractionsThumbDown
+7  beach-rats            6  whostosay  /user/whostosay  Sep 11, 2017  [ "A well crafted movie that exploits the inhe...                   0.0                     0.0                  0.0                    0.0
+pi@raspberrypi:~/RSL $ time python_movie.py
+bash: python_movie.py: command not found
+
+real	0m0.006s
+user	0m0.002s
+sys	0m0.005s

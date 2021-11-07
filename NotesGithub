@@ -1,0 +1,91 @@
+pi@raspberrypi:~ $ git config --global user.name "Shorok Moustafa"
+pi@raspberrypi:~ $ git config --global user.email "shorok_m@live.nl"
+pi@raspberrypi:~ $ mkdir MovieRecommender
+pi@raspberrypi:~ $ cd MovieRecommender
+pi@raspberrypi:~/MovieRecommender $ ls
+README.md
+pi@raspberrypi:~/MovieRecommender $ git init
+Initialized empty Git repository in /home/pi/MovieRecommender/.git/
+pi@raspberrypi:~/MovieRecommender $ ls -a
+.  ..  .git  README.md
+pi@raspberrypi:~/MovieRecommender $ ls -a.git
+ls: invalid option -- '.'
+Try 'ls --help' for more information.
+pi@raspberrypi:~/MovieRecommender $ ls -a .git
+.  ..  branches  config  description  HEAD  hooks  info  objects  refs
+pi@raspberrypi:~/MovieRecommender $ git add README.md
+pi@raspberrypi:~/MovieRecommender $ git add --all
+pi@raspberrypi:~/MovieRecommender $ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   README.md
+
+pi@raspberrypi:~/MovieRecommender $ git commit -am "add README.md"
+[master (root-commit) 2395d10] add README.md
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+pi@raspberrypi:~/MovieRecommender $ git add --all
+pi@raspberrypi:~/MovieRecommender $ git commit -am "add json and py files"
+[master 03114df] add json and py files
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Movie.py
+ create mode 100644 Recommendations.json
+pi@raspberrypi:~/MovieRecommender $ git log Movie.py
+commit 03114df39b8ed6f0ec3bd79b3716ec6c3d9b608e (HEAD -> master)
+Author: Shorok Moustafa <shorok_m@live.nl>
+Date:   Wed Nov 3 18:06:08 2021 +0100
+
+    add json and py files
+pi@raspberrypi:~/MovieRecommender $ git checkout 03114df39b8ed6f0ec3bd79b3716ec6c3d9b608e movie.py
+error: pathspec 'movie.py' did not match any file(s) known to git
+pi@raspberrypi:~/MovieRecommender $ git checkout 03114df39b8ed6f0ec3bd79b3716ec6c3d9b608e Movie.py
+pi@raspberrypi:~/MovieRecommender $ git commit -am "restore Find Function"
+On branch master
+nothing to commit, working tree clean
+pi@raspberrypi:~/MovieRecommender $ git status
+On branch master
+nothing to commit, working tree clean
+pi@raspberrypi:~/MovieRecommender $ git checkout -b lidar version
+fatal: 'version' is not a commit and a branch 'lidar' cannot be created from it
+pi@raspberrypi:~/MovieRecommender $ git checkout -b lidar-version
+Switched to a new branch 'lidar-version'
+pi@raspberrypi:~/MovieRecommender $ git checkout master
+Switched to branch 'master'
+pi@raspberrypi:~/MovieRecommender $ git merge lidar-version
+Already up to date.
+pi@raspberrypi:~/MovieRecommender $ gite remote add origin https://github.com/shorokm/MovieRecommender.git
+bash: gite: command not found
+pi@raspberrypi:~/MovieRecommender $ git remote add origin https://github.com/shorokm/MovieRecommender.git
+pi@raspberrypi:~/MovieRecommender $ git push -u origin master
+Username for 'https://github.com': shorokm
+Password for 'https://shorokm@github.com': 
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (6/6), 531 bytes | 88.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0)
+To https://github.com/shorokm/MovieRecommender.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
